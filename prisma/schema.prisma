@@ -17,8 +17,10 @@ model Profile {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Server    Server[]
-  Member    Member[]
+
+  Server  Server[]
+  Member  Member[]
+  Channel Channel[]
 }
 
 model Server {
@@ -32,7 +34,9 @@ model Server {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Member    Member[]
+
+  Member  Member[]
+  Channel Channel[]
 
   @@index([profileId])
 }
@@ -46,6 +50,30 @@ enum MemberRole {
 model Member {
   id   String     @id @default(uuid())
   role MemberRole @default(GUEST)
+
+  profileId String
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  serverId String
+  server   Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([profileId])
+  @@index([serverId])
+}
+
+enum ChannelType {
+  TEXT
+  AUDIO
+  VIDEO
+}
+
+model Channel {
+  id   String      @id @default(uuid())
+  name String
+  type ChannelType @default(TEXT)
 
   profileId String
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
