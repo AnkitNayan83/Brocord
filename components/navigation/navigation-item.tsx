@@ -16,7 +16,7 @@ const NavigatioItem = ({ id, imageUrl, name }: NavigatioItemProps) => {
     const router = useRouter();
 
     const handelClick = () => {
-        router.push(`/server/${id}`);
+        router.push(`/servers/${id}`);
     };
 
     return (

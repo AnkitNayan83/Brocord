@@ -24,6 +24,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FileUpload from "./file-upload";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -34,8 +35,8 @@ const formSchema = z.object({
     }),
 });
 
-const CreateServer = () => {
-    // to remove hydration error due to our form model
+const CreateServerModal = () => {
+    const { isOpen, type, onClose } = useModal();
     const router = useRouter();
 
     const form = useForm({
@@ -46,6 +47,8 @@ const CreateServer = () => {
         },
     });
 
+    const isModalOpen = isOpen && type === "createServer";
+
     const isLoading = form.formState.isSubmitting;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -53,13 +56,19 @@ const CreateServer = () => {
             await axios.post("/api/servers", values);
             form.reset();
             router.refresh();
+            onClose();
         } catch (error) {
             console.log(error);
         }
     };
 
+    const handelClose = () => {
+        form.reset();
+        onClose();
+    };
+
     return (
-        <Dialog open>
+        <Dialog open={isModalOpen} onOpenChange={handelClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
@@ -125,4 +134,4 @@ const CreateServer = () => {
     );
 };
 
-export default CreateServer;
+export default CreateServerModal;
