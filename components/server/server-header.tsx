@@ -49,7 +49,10 @@ const ServerHeader = ({ server, role }: serverHeaderProps) => {
                     </DropdownMenuItem>
                 )}
                 {isAdmin && (
-                    <DropdownMenuItem className="text-red-600 dark:text-red-400 px-3 py-2 text-sm cursor-pointer">
+                    <DropdownMenuItem
+                        onClick={() => onOpen("serverSettings", { server })}
+                        className="text-red-600 dark:text-red-400 px-3 py-2 text-sm cursor-pointer"
+                    >
                         Server Settings
                         <Settings className="h-4 w-4 ml-auto" />
                     </DropdownMenuItem>
