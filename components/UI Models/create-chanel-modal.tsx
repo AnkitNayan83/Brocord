@@ -69,7 +69,6 @@ const CreateChanelModal = () => {
                     serverId: data.server?.id,
                 },
             });
-            console.log(url);
             await axios.post(url, values);
             form.reset();
             router.refresh();
