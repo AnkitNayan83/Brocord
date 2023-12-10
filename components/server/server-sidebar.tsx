@@ -6,10 +6,10 @@ import ServerHeader from "./server-header";
 import { ScrollArea } from "../ui/scroll-area";
 import { Crown, Hash, Mic, ShieldCheck, Video } from "lucide-react";
 import ServerSearch from "./server-search";
-import { channel } from "diagnostics_channel";
 import { Separator } from "../ui/separator";
 import ServerSection from "./server-section";
 import ServerChannel from "./server-channel";
+import ServerMember from "./server-member";
 
 const iconMap = {
     [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4" />,
@@ -117,15 +117,74 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
                             label="Text Channels"
                             server={server}
                         />
+                        <div className="space-y-[2px]">
+                            {textChannels?.map((channel) => (
+                                <ServerChannel
+                                    server={server}
+                                    key={channel.id}
+                                    role={role}
+                                    channel={channel}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
+                {!!audioChannels?.length && (
+                    <div className="mb-2">
+                        <ServerSection
+                            sectionType="channels"
+                            channelType={ChannelType.AUDIO}
+                            role={role}
+                            label="Voice Channels"
+                            server={server}
+                        />
+                        <div className="space-y-[2px]">
+                            {audioChannels?.map((channel) => (
+                                <ServerChannel
+                                    server={server}
+                                    key={channel.id}
+                                    role={role}
+                                    channel={channel}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
 
-                        {textChannels?.map((channel) => (
-                            <ServerChannel
-                                server={server}
-                                key={channel.id}
-                                role={role}
-                                channel={channel}
-                            />
-                        ))}
+                {!!videoChannels?.length && (
+                    <div className="mb-2">
+                        <ServerSection
+                            sectionType="channels"
+                            channelType={ChannelType.VIDEO}
+                            role={role}
+                            label="Voice Channels"
+                            server={server}
+                        />
+                        <div className="space-y-[2px]">
+                            {videoChannels?.map((channel) => (
+                                <ServerChannel
+                                    server={server}
+                                    key={channel.id}
+                                    role={role}
+                                    channel={channel}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
+                {!!members?.length && (
+                    <div className="mb-2">
+                        <ServerSection
+                            sectionType="members"
+                            role={role}
+                            label="Members"
+                            server={server}
+                        />
+                        <div className="space-y-[2px]">
+                            {members?.map((member) => (
+                                <ServerMember member={member} server={server} />
+                            ))}
+                        </div>
                     </div>
                 )}
             </ScrollArea>

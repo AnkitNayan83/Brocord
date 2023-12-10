@@ -16,6 +16,7 @@ interface ServerSectionProps {
 
 const ServerSection = ({ label, role, sectionType, channelType, server }: ServerSectionProps) => {
     const { onOpen } = useModal();
+    console.log(channelType);
     return (
         <div className="flex items-center justify-between py-2">
             <p className="text-xs uppercase font-semibold text-zinc-500 dark:text-zinc-400">
@@ -25,7 +26,7 @@ const ServerSection = ({ label, role, sectionType, channelType, server }: Server
                 <ActionTooltip label="Create Channel" side="top">
                     <button
                         className="text-zinc-500 hover:text-zinc-600 dakr:text-zinc-400 dark:hover:text-zinc-300 transition"
-                        onClick={() => onOpen("createChanel", { server })}
+                        onClick={() => onOpen("createChanel", { server, channelType })}
                     >
                         <Plus className="w-4 h-4" />
                     </button>
