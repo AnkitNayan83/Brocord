@@ -7,6 +7,9 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Crown, Hash, Mic, ShieldCheck, Video } from "lucide-react";
 import ServerSearch from "./server-search";
 import { channel } from "diagnostics_channel";
+import { Separator } from "../ui/separator";
+import ServerSection from "./server-section";
+import ServerChannel from "./server-channel";
 
 const iconMap = {
     [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4" />,
@@ -103,6 +106,28 @@ const ServerSidebar = async ({ serverId }: { serverId: string }) => {
                         ]}
                     />
                 </div>
+                <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" />
+
+                {!!textChannels?.length && (
+                    <div className="mb-2">
+                        <ServerSection
+                            sectionType="channels"
+                            channelType={ChannelType.TEXT}
+                            role={role}
+                            label="Text Channels"
+                            server={server}
+                        />
+
+                        {textChannels?.map((channel) => (
+                            <ServerChannel
+                                server={server}
+                                key={channel.id}
+                                role={role}
+                                channel={channel}
+                            />
+                        ))}
+                    </div>
+                )}
             </ScrollArea>
         </div>
     );

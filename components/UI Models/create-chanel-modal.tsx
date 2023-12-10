@@ -33,7 +33,6 @@ import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { ChannelType } from "@prisma/client";
 import qs from "query-string";
-import queryString from "query-string";
 
 const formSchema = z.object({
     name: z
