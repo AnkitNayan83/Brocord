@@ -50,6 +50,7 @@ const EditChannelModal = () => {
     const router = useRouter();
 
     const { channel } = data;
+    console.log(channel);
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -58,7 +59,7 @@ const EditChannelModal = () => {
             type: channel?.type || ChannelType.TEXT,
         },
     });
-
+    // using useEffect because channel data is recieved after the model is rendered
     useEffect(() => {
         if (channel) {
             form.setValue("name", channel.name);
