@@ -37,6 +37,7 @@ import ActionTooltip from "../navigation/action-tooltip";
 import { MemberRole } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { ServerWithMembersWithProfiles } from "@/types";
 
 const roleIconMap = {
     GUEST: null,
@@ -50,7 +51,7 @@ const ManageMemberModal = () => {
     const router = useRouter();
 
     const isModalOpen = isOpen && type === "members";
-    const { server } = data;
+    const { server } = data as { server: ServerWithMembersWithProfiles };
 
     const handelClose = () => {
         onClose();

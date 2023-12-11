@@ -8,6 +8,8 @@ import ManageMemberModal from "../UI Models/manage-member-modal";
 import CreateChanelModal from "../UI Models/create-chanel-modal";
 import LeaveServerModal from "../UI Models/leave-server-modal";
 import DeleteServerModal from "../UI Models/delete-server-modal";
+import DeleteChannelModal from "../UI Models/delete-channel-modal";
+import EditChannelModal from "../UI Models/edit-channel-modal";
 
 const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -26,6 +28,8 @@ const ModalProvider = () => {
             <CreateChanelModal />
             <LeaveServerModal />
             <DeleteServerModal />
+            <DeleteChannelModal />
+            <EditChannelModal />
         </>
     );
 };

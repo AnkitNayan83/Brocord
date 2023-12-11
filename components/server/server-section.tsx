@@ -16,7 +16,6 @@ interface ServerSectionProps {
 
 const ServerSection = ({ label, role, sectionType, channelType, server }: ServerSectionProps) => {
     const { onOpen } = useModal();
-    console.log(channelType);
     return (
         <div className="flex items-center justify-between py-2">
             <p className="text-xs uppercase font-semibold text-zinc-500 dark:text-zinc-400">
