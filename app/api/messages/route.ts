@@ -63,8 +63,6 @@ export async function GET(req: Request) {
             });
         }
 
-        console.log(messages, cursor);
-
         let nextCursor = null;
 
         if (messages.length === MESSAGE_BATCH) {
