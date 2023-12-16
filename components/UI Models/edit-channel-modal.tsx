@@ -50,7 +50,6 @@ const EditChannelModal = () => {
     const router = useRouter();
 
     const { channel } = data;
-    console.log(channel);
 
     const form = useForm({
         resolver: zodResolver(formSchema),
