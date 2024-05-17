@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Brocord is a web app similar to Discord where you can create channels to talk to people with audio text and video calls. The framework which is used to build this project was NextJs. Under this project, I used socket.io to establish socket connections between different clients and LiveKit to set up webRtc for video and audio calls. It has a very user-friendly UI. Members of a server have different roles and their power depends on their role. It has a robust and secure authentication.
 
 ## Getting Started
 
